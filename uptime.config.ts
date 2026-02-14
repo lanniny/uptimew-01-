@@ -2,8 +2,8 @@
 import { MaintenanceConfig, PageConfig, WorkerConfig } from './types/config'
 
 // ================= 全局配置常量 =================
-const API_URL = 'https://gemini.xzysz.fun/v1/chat/completions';
-const API_KEY = 'Bearer T36u6f9PRTVNTDAAVdmPC8YGFQp8U88gPTPqfVyDaSgw7cwE';
+const API_URL = 'https://image.xzysz.fun/v1/chat/completions';
+const API_KEY = 'Bearer aFcw7mBcwHc3GRwDEfdNZU8GKPaGgPbNTJst3MqnkGItYumU';
 
 // 公共请求头
 const COMMON_HEADERS = {
