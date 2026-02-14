@@ -22,8 +22,8 @@ variable "enable_do_migration" {
 }
 
 resource "cloudflare_d1_database" "uptimeflare_d1" {
-  account_id            = var.CLOUDFLARE_ACCOUNT_ID
-  name                  = "uptimeflare_d1"
+  account_id       = var.CLOUDFLARE_ACCOUNT_ID
+  name             = "uptimeflare_d1"
   read_replication = {
     mode = "auto"
   }
@@ -66,7 +66,8 @@ resource "cloudflare_workers_cron_trigger" "uptimeflare_worker_cron" {
   account_id  = var.CLOUDFLARE_ACCOUNT_ID
   script_name = cloudflare_workers_script.uptimeflare_worker.script_name
   schedules = [{
-    cron = "* * * * *" # every 1 minute, you can reduce the write counts by increase the worker settings of `kvWriteCooldownMinutes`
+    # [修改点] 将这里改为 "*/15 * * * *" 即代表每15分钟运行一次
+    cron = "*/15 * * * *" 
   }]
 }
 
