@@ -16,7 +16,7 @@ const pageConfig: PageConfig = {
   title: "模型服务状态监控",
   links: [
     { link: 'https://github.com/lyc8503/UptimeFlare', label: 'GitHub' },
-    { link: 'https://gemini.xzysz.fun/', label: 'API 站', highlight: true },
+    { link: 'https://image.xzysz.fun/', label: 'API 站', highlight: true },
   ],
 }
 
