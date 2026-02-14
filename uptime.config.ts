@@ -23,25 +23,28 @@ const pageConfig: PageConfig = {
 // ================= 监控配置 =================
 const workerConfig: WorkerConfig = {
   monitors: [
-    // 仅保留图像模型监控
-    {
-      id: 'gemini-3-pro-image',
-      name: 'Gemini 3 Pro Image',
-      method: 'POST',
-      target: API_URL,
-      headers: COMMON_HEADERS,
-      body: JSON.stringify({
-        model: 'gemini-3-pro-image',
-        messages: [{ role: 'user', content: 'ping' }],
-        max_tokens: 1
-      }),
-      expectedCodes: [200],
-      timeout: 60000, // 图像模型生成较慢，保留较长的超时时间
-    }, 
+    // 使用 Array.from 生成 5 个相同的监控任务
+    ...Array.from({ length: 5 }).map((_, index) => {
+      const num = index + 1; // 序号 1 到 5
+      return {
+        id: `gemini-3-pro-image-${num}`, // 确保 ID 唯一: gemini-3-pro-image-1 ...
+        name: `Gemini 3 Pro Image Test #${num}`, // 显示名称区分: Test #1 ...
+        method: 'POST',
+        target: API_URL,
+        headers: COMMON_HEADERS,
+        body: JSON.stringify({
+          model: 'gemini-3-pro-image', // 确保这里是你想要测试的图像模型 ID
+          messages: [{ role: 'user', content: 'ping' }],
+          max_tokens: 1
+        }),
+        expectedCodes: [200],
+        timeout: 60000, // 图像生成通常较慢，给予 60秒超时
+      };
+    }),
   ],
 
   notification: {
-    timeZone: 'Asia/Shanghai', // 已修复此处原始代码中的语法错误
+    timeZone: 'Asia/Shanghai',
     gracePeriod: 2,
   },
 }
